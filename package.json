@@ -1,0 +1,20 @@
+{
+  "name": "server_crud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon --watch src/http/Server.js --exec 'node src/http/Server.js'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.9.1",
+    "bcrypt": "^5.1.1",
+    "fastify": "^4.26.1",
+    "nodemon": "^3.0.3",
+    "prisma": "^5.9.1"
+  }
+}
