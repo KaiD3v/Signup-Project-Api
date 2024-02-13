@@ -3,32 +3,30 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export async function createCommentHandler(app) {
-  app.post("/user/:id/post/:postId/comment", async (req, res) => {
+  app.post("/user/:id/post/:postId/:commenterId/comment", async (req, res) => {
     try {
       const userId = req.params.id;
       const postId = req.params.postId;
+      const commenterId = req.params.commenterId;
       const { comment } = req.body;
 
-      // Verificar se o usuário existe
-      const user = await prisma.user.findUnique({ 
-        where: { id: userId },
-        include: { posts: true }
-      });
-      if (!user) {
-        return res.status(404).send({ message: "Usuário não encontrado!" });
-      }
-
-      // Encontrar o post específico
-      const post = user.posts.find(post => post.id === postId);
+      // Verificar se o post existe
+      const post = await prisma.post.findUnique({ where: { id: postId } });
       if (!post) {
         return res.status(404).send({ message: "Post não encontrado!" });
+      }
+
+      // Verificar se o usuário que está fazendo o comentário existe
+      const commenter = await prisma.user.findUnique({ where: { id: commenterId } });
+      if (!commenter) {
+        return res.status(404).send({ message: "Usuário que está fazendo o comentário não encontrado!" });
       }
 
       // Criar o comentário associado ao usuário e à postagem
       const newComment = await prisma.comment.create({
         data: {
-          authorId: userId,
-          authorName: user.name,
+          authorId: commenterId,
+          authorName: commenter.name,
           content: comment,
           postId: postId,
         },
