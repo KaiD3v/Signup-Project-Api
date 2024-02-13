@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -12,8 +9,18 @@ datasource db {
 
 model User {
   id        String   @id @default(uuid())
-  name String
-  email String @unique
-  password String
+  name      String
+  email     String   @unique
+  password  String
   createdAt DateTime @default(now())
+  posts     Post[] // Relação um-para-muitos com a tabela de posts
+}
+
+model Post {
+  id        String   @id @default(uuid())
+  title     String
+  content   String
+  createdAt DateTime @default(now())
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  String // armazena o ID do usuário que fez o post
 }
