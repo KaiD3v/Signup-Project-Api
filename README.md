@@ -5,11 +5,16 @@ This API serves as a backend system for user management, authentication, and pos
 
 ### 1. User Management
 - **POST /register**: Create a new user account.
+- **GET /user/:id**: Retrieve a specific user and their posts.
+- **GET /users**: Retrieve all users.
+- **PUT /user/:id/update**: Update a specific user.
+- **DELETE /user/:id/delete**: Delete a specific user.
 - **POST /login**: Authenticate a user and generate an access token.
 
 ### 2. Post Management
 - **POST /user/:userId/post**: Create a new post for a specific user.
 - **GET /user/:userId/post/:postId**: Retrieve a specific post for a user.
+- **GET /posts**: Retrieve all posts.
 - **PUT /user/:userId/post/:postId/update**: Update a specific post for a user.
 - **DELETE /user/:userId/post/:postId/delete**: Delete a specific post for a user.
 
@@ -19,10 +24,10 @@ This API serves as a backend system for user management, authentication, and pos
 
 ## Dependencies
 - Node.js
-- fastify.js
+- Fastify.js
 - Prisma ORM
 - bcrypt.js (for password hashing)
-- json web token (for authentication)
+- JSON Web Token (for authentication)
 
 ## Installation
 1. Clone the repository.
