@@ -5,9 +5,12 @@ const prisma = new PrismaClient();
 export async function getPostHandler(app) {
   app.get("/user/:authorId/post/:postId", async (req, res) => {
     try {
-      const { postId } = req.params; // Extrai o id da postagem dos parâmetros da rota
+      const { postId } = req.params;
       const post = await prisma.post.findUnique({
         where: { id: postId },
+        include: {
+          comments: true
+        }
       });
 
       if (!post) {
@@ -18,6 +21,7 @@ export async function getPostHandler(app) {
         post: {
           title: post.title,
           content: post.content,
+          comments: post.comments 
         },
       });
     } catch (err) {

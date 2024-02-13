@@ -8,31 +8,32 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
+  id        String    @id @default(uuid())
   name      String
-  email     String   @unique
+  email     String    @unique
   password  String
-  createdAt DateTime @default(now())
-  posts     Post[]   // Relação um-para-muitos com a tabela de posts
+  createdAt DateTime  @default(now())
+  posts     Post[] // Relação um-para-muitos com a tabela de posts
   comments  Comment[] // Relação um-para-muitos com a tabela de comentários
 }
 
 model Post {
-  id        String   @id @default(uuid())
+  id        String    @id @default(uuid())
   title     String
-  content   String   @db.VarChar(10000)
-  createdAt DateTime @default(now())
-  author    User     @relation(fields: [authorId], references: [id])
-  authorId  String   // ID do usuário que fez o post
+  content   String    @db.VarChar(10000)
+  createdAt DateTime  @default(now())
+  author    User      @relation(fields: [authorId], references: [id])
+  authorId  String // ID do usuário que fez o post
   comments  Comment[] // Relação um-para-muitos com a tabela de comentários
 }
 
 model Comment {
-  id        String   @id @default(uuid())
-  content   String
-  createdAt DateTime @default(now())
-  author    User     @relation(fields: [authorId], references: [id])
-  authorId  String   // ID do usuário que fez o comentário
-  post      Post     @relation(fields: [postId], references: [id])
-  postId    String   // ID da postagem à qual o comentário está associado
+  id         String   @id @default(uuid())
+  content    String
+  createdAt  DateTime @default(now())
+  author     User     @relation(fields: [authorId], references: [id])
+  authorName String?
+  authorId   String // ID do usuário que fez o comentário
+  post       Post     @relation(fields: [postId], references: [id])
+  postId     String // ID da postagem à qual o comentário está associado
 }
