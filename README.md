@@ -4,14 +4,14 @@ This API serves as a backend system for user management, authentication, and pos
 ## Endpoints
 
 ### 1. User Management
-- **POST /signup**: Create a new user account.
+- **POST /register**: Create a new user account.
 - **POST /login**: Authenticate a user and generate an access token.
 
 ### 2. Post Management
 - **POST /user/:userId/post**: Create a new post for a specific user.
 - **GET /user/:userId/post/:postId**: Retrieve a specific post for a user.
-- **PUT /user/:userId/post/:postId**: Update a specific post for a user.
-- **DELETE /user/:userId/post/:postId**: Delete a specific post for a user.
+- **PUT /user/:userId/post/:postId/update**: Update a specific post for a user.
+- **DELETE /user/:userId/post/:postId/delete**: Delete a specific post for a user.
 
 ## Authentication
 - The API uses token-based authentication.
@@ -19,9 +19,10 @@ This API serves as a backend system for user management, authentication, and pos
 
 ## Dependencies
 - Node.js
-- Express.js
+- fastify.js
 - Prisma ORM
 - bcrypt.js (for password hashing)
+- json web token (for authentication)
 
 ## Installation
 1. Clone the repository.
@@ -37,7 +38,7 @@ Ensure the following environment variables are set:
 
 ## Usage
 1. Use the provided endpoints to interact with the API.
-2. Sign up a new user using the `/signup` endpoint.
+2. Sign up a new user using the `/register` endpoint.
 3. Log in to obtain an access token using the `/login` endpoint.
 4. Use the access token in the headers of subsequent requests to access protected endpoints.
 5. Create, update, retrieve, or delete posts using the appropriate endpoints.
