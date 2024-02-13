@@ -7,6 +7,7 @@ import { authUserHandler } from "./routes/users/userAuth.js"
 import { updateHandler } from "./routes/users/UpdateUser.js"
 import { CreatePostHandler } from "./routes/posts/CreatePost.js"
 import { getPostHandler } from "./routes/posts/GetPost.js"
+import { getPostsHandler } from "./routes/posts/GetPosts.js"
 
 const app = fastify()
 const port = 3000
@@ -22,6 +23,7 @@ app.register(updateHandler)
 //posts routes
 app.register(CreatePostHandler)
 app.register(getPostHandler)
+app.register(getPostsHandler)
 
 app.listen({port: port}).then(() => {
     console.log(`Servidor ${port}`)
