@@ -6,7 +6,17 @@ export async function updateHandler(app) {
   app.put("/user/update/:id", async (req, res) => {
     try {
       const userId = req.params.id;
-      const { name, email } = req.body;
+      const { id: updatedUserId, name, email } = req.body; // Extrai o novo ID do corpo da solicitação
+
+      // Verifica se o usuário está tentando alterar seu próprio ID
+      if (updatedUserId && updatedUserId !== userId) {
+        return res
+          .status(403)
+          .send({
+            message:
+              "Você não tem permissão para alterar o ID de outro usuário",
+          });
+      }
 
       const existingUser = await prisma.user.findUnique({
         where: { id: userId },
