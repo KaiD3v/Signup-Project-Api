@@ -10,9 +10,10 @@ import { getPostHandler } from "./routes/posts/GetPost.js";
 import { getPostsHandler } from "./routes/posts/GetPosts.js";
 import { updatePostHandler } from "./routes/posts/UpdatePost.js";
 import { deletePostHandler } from "./routes/posts/DeletePost.js";
-import { createCommentHandler } from "./routes/coments/CreateComment.js";
-import { updateCommentHandler } from "./routes/coments/UpdateComment.js";
-import { deleteCommentHandler } from "./routes/coments/DeleteComment.js";
+import { createCommentHandler } from "./routes/comments/CreateComment.js";
+import { updateCommentHandler } from "./routes/comments/UpdateComment.js";
+import { deleteCommentHandler } from "./routes/comments/DeleteComment.js";
+
 
 const app = fastify();
 const port = 3000;
