@@ -12,6 +12,7 @@ import { updatePostHandler } from "./routes/posts/UpdatePost.js";
 import { deletePostHandler } from "./routes/posts/DeletePost.js";
 import { createCommentHandler } from "./routes/coments/CreateComment.js";
 import { updateCommentHandler } from "./routes/coments/UpdateComment.js";
+import { deleteCommentHandler } from "./routes/coments/DeleteComment.js";
 
 const app = fastify();
 const port = 3000;
@@ -35,6 +36,7 @@ app.register(deletePostHandler)
 //comments routes
 app.register(createCommentHandler)
 app.register(updateCommentHandler)
+app.register(deleteCommentHandler)
 
 app.listen({ port: port }).then(() => {
   console.log(`Servidor ${port}`);
