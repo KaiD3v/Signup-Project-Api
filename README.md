@@ -1,5 +1,5 @@
 ## Introduction
-This API serves as a backend system for user management, authentication, and post creation. It provides endpoints for signing up users, authenticating them, and creating posts.
+This API serves as a backend system for user management, authentication, post creation, and comment management. It provides endpoints for signing up users, authenticating them, creating posts, and managing comments on posts.
 
 ## Endpoints
 
@@ -17,6 +17,12 @@ This API serves as a backend system for user management, authentication, and pos
 - **GET /posts**: Retrieve all posts.
 - **PUT /user/:userId/post/:postId/update**: Update a specific post for a user.
 - **DELETE /user/:userId/post/:postId/delete**: Delete a specific post for a user.
+
+### 3. Comment Management
+- **POST /user/:userId/post/:postId/comment**: Create a new comment on a specific post.
+- **GET /user/:userId/post/:postId/comment/:commentId**: Retrieve a specific comment on a post.
+- **PUT /user/:userId/post/:postId/comment/:commentId/update**: Update a specific comment on a post.
+- **DELETE /user/:userId/post/:postId/comment/:commentId/delete**: Delete a specific comment on a post.
 
 ## Authentication
 - The API uses token-based authentication.
@@ -47,6 +53,7 @@ Ensure the following environment variables are set:
 3. Log in to obtain an access token using the `/login` endpoint.
 4. Use the access token in the headers of subsequent requests to access protected endpoints.
 5. Create, update, retrieve, or delete posts using the appropriate endpoints.
+6. Add comments to posts using the comment management endpoints.
 
 ## Contributions
 Contributions are welcome! If you find any issues or have suggestions for improvements, feel free to open an issue or submit a pull request.
